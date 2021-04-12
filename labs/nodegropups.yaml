@@ -1,0 +1,11 @@
+--2021-04-11 18:46:52--  https://raw.githubusercontent.com/awslabs/amazon-eks-ami/master/amazon-eks-nodegroup.yaml
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 16947 (17K) [text/plain]
+Saving to: ‘amazon-eks-nodegroup.yaml’
+
+     0K .......... ......                                     100% 20.2M=0.001s
+
+2021-04-11 18:46:52 (20.2 MB/s) - ‘amazon-eks-nodegroup.yaml’ saved [16947/16947]
+
