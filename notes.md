@@ -9,13 +9,18 @@
 	https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html
 
 	You need to create IAM role for the cluster
-	
+
+        file:cluster-iam-role.yaml	
 	https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html
 
         For 1.17 configure VPC CNI,ussing service account
 
 	https://docs.aws.amazon.com/eks/latest/userguide/cni-iam-role.html
         [execute the eksctl example]
+
+
+eksctl utils associate-iam-oidc-provider --region=us-east-1 --cluster=my-cluster-two --approve
+
 
 	eksctl create iamserviceaccount \
     --name aws-node \
@@ -45,7 +50,7 @@
 #### Create nodegroups
 
 	https://github.com/awslabs/amazon-eks-ami/blob/master/amazon-eks-nodegroup.yaml
-
+	file:nodegroups.yaml
 	Search: https://docs.aws.amazon.com/eks/latest/userguide/create-managed-node-group.html
 
 
@@ -66,6 +71,9 @@
 	For Provider URL, paste the OIDC provider URL for your cluster from step two, and then choose Get thumbprint.
 
 	For Audience, enter sts.amazonaws.com and choose Add provider.
+
+
+eksctl utils associate-iam-oidc-provider --region=us-east-1 --cluster=my-cluster-two --approve
 
 
 
@@ -94,7 +102,7 @@ eksctl create iamserviceaccount \
 --approve
 
 
-
+  --to check CNI
   kubectl delete pods -n kube-system -l k8s-app=aws-node
 
 	
@@ -133,7 +141,15 @@ eksctl create iamserviceaccount \
 
 	kubectl scale deployment autoscaler-demo --replicas=50	
 
+#### Checks logs
 
+kubectl logs -n kube-system   deployment.apps/aws-load-balancer-controller
+
+####Check service account for CNI
+
+kubectl delete pods -n kube-system -l k8s-app=aws-node
+kubectl get pods -n kube-system  -l k8s-app=aws-node
+kubectl exec -n kube-system aws-node-<9rgzw> env | grep AWS
 
 
 #### Create Service account
@@ -153,5 +169,7 @@ eksctl create iamserviceaccount \
 
 
 
+WAFV2 support can be disabled by controller flags as mentioned here.
 
+A) If you install it via kubectl, add - --feature-gates=waf=false to the spec -> containers -> args section.
 
