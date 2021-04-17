@@ -1,0 +1,11 @@
+--2021-04-16 23:13:22--  https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/examples/2048/2048_full.yaml
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.111.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1124 (1.1K) [text/plain]
+Saving to: ‘2048_full.yaml’
+
+     0K .                                                     100% 17.5M=0s
+
+2021-04-16 23:13:22 (17.5 MB/s) - ‘2048_full.yaml’ saved [1124/1124]
+

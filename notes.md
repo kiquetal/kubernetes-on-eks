@@ -93,6 +93,8 @@ aws iam create-policy \
     --policy-name AWSLoadBalancerControllerIAMPolicy \
     --policy-document file://iam-policy.json
 
+
+--- JUST DO THIS ---
 eksctl create iamserviceaccount \
 --cluster=<cluster-name> \
 --namespace=kube-system \
@@ -102,6 +104,18 @@ eksctl create iamserviceaccount \
 --approve
 
 
+
+install
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.2/cert-manager.yaml
+edit
+
+wget https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.1.2/docs/install/v2_1_2_full.yaml
+change cluster-name
+ and
+remove service account@
+
+
+------------------
   --to check CNI
   kubectl delete pods -n kube-system -l k8s-app=aws-node
 
@@ -172,4 +186,7 @@ kubectl exec -n kube-system aws-node-<9rgzw> env | grep AWS
 WAFV2 support can be disabled by controller flags as mentioned here.
 
 A) If you install it via kubectl, add - --feature-gates=waf=false to the spec -> containers -> args section.
+i
 
+check file: v2_1_2_full.yaml
+examples=https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/examples/2048/2048_full.yaml
